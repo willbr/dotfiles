@@ -1,4 +1,16 @@
+call pathogen#infect()
 set noswapfile
+set shortmess=atI
+
+set backup
+set backupdir=~/.tmp,~/,.
+set directory=~/.tmp,~/,.
+
+set history=500
+
+
+set tags=./tags;/
+set clipboard=unnamed
 
 " ----------------------------------------------------------------------------
 "  Text Formatting
@@ -8,13 +20,13 @@ set autoindent             " automatic indent new lines
 set smartindent            " be smart about it
 inoremap # X<BS>#
 set nowrap                 " do not wrap lines
-set softtabstop=2          " yep, two
-set shiftwidth=2           " ..
+set softtabstop=4
+set shiftwidth=4
 set tabstop=4
 set expandtab              " expand tabs to spaces
 set nosmarttab             " fuck tabs
 set formatoptions+=n       " support for numbered/bullet lists
-"set textwidth=80           " wrap at 80 chars by default
+set textwidth=72           " wrap at 80 chars by default
 set virtualedit=block      " allow virtual edit in visual block ..
 
 " ----------------------------------------------------------------------------
@@ -26,7 +38,17 @@ let mapleader = ","
 
 " exit to normal mode with 'jj'
 inoremap jj <ESC>
+inoremap jk <ESC>
 
+nnoremap 0 ^
+nnoremap ^ 0
+nnoremap ; :
+nnoremap : ;
+
+nnoremap <leader>Q :qall!<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>x :x<CR>
 
 " reflow paragraph with Q in normal and visual mode
 nnoremap Q gqap
@@ -44,6 +66,35 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
+" readline mappings
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+
+" key tweaks
+inoremap <nul> _
+inoremap <C-Space> _
+
+inoremap <C-h> [
+inoremap <C-j> (
+imap <C-k> <SPACE><BS>)
+imap <C-l> <SPACE><BS>]
+inoremap <C-o> {
+
+nnoremap <silent> <leader>of :FSHere<CR>
+
+" ----------------------------------------------------------------------------
+" Window
+" ----------------------------------------------------------------------------
+
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
+
 " ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
@@ -60,6 +111,7 @@ set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
 set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
+set scrolloff=3
 
 
 " ----------------------------------------------------------------------------
@@ -71,6 +123,7 @@ set mat=5                  " duration to show matching brace (1/10 sec)
 set incsearch              " do incremental searching
 set laststatus=2           " always show the status line
 set ignorecase             " ignore case when searching
+set smartcase
 set nohlsearch             " don't highlight searches
 set visualbell             " shut the fuck up
 
@@ -83,3 +136,35 @@ function! StripWhitespace ()
     exec ':%s/ \+$//gc'
 endfunction
 map ,s :call StripWhitespace ()<CR>
+
+" ---------------------------------------------------------------------------
+"  C settings
+" ---------------------------------------------------------------------------
+
+set cino+=(0
+
+if !exists("autocommands_loaded")
+    let autocommands_loaded = 1
+    au BufNewFile *.h call s:InsertCHeader()
+endif
+
+function! s:InsertCHeader()
+    let fname = '_' . expand('%:t')
+    let fname = toupper(fname)
+    let fname = substitute(fname, '\.', '_', 'g')
+    call setline(line('.'), "#ifndef " . fname)
+    call append(line('$'), "#define " . fname)
+    call append(line('$'), "")
+    call append(line('$'), "")
+    call append(line('$'), "")
+    call append(line('$'), "#endif")
+    normal GGkk
+endfunction
+
+" ---------------------------------------------------------------------------
+"  Plugins
+" ---------------------------------------------------------------------------
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces

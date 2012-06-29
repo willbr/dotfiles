@@ -1,3 +1,4 @@
+set guifont=Inconsolata-dz:h28
 colorscheme desert
 set anti
 set lines=999 columns=84
