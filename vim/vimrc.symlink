@@ -1,4 +1,7 @@
 call pathogen#infect()
+syntax on
+filetype plugin indent on
+
 set nocompatible
 set noswapfile
 set shortmess=atI
@@ -43,10 +46,12 @@ let mapleader = ","
 inoremap jj <ESC>
 inoremap jk <ESC>
 
+" set undo point at C-U
+inoremap <C-U> <C-G>u<C-U>
+
 nnoremap 0 ^
 nnoremap ^ 0
 nnoremap ; :
-nnoremap : ;
 
 nnoremap <leader>Q :qall!<CR>
 nnoremap <leader>q :q<CR>
@@ -124,10 +129,10 @@ set scrolloff=3
 set showmatch              " brackets/braces that is
 set mat=5                  " duration to show matching brace (1/10 sec)
 set incsearch              " do incremental searching
+set hlsearch
 set laststatus=2           " always show the status line
 set ignorecase             " ignore case when searching
 set smartcase
-set nohlsearch             " don't highlight searches
 set visualbell             " shut the fuck up
 
 
