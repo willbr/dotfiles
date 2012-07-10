@@ -1,0 +1,10 @@
+"3.4 (created: 2012/04/02 20:07:29)
+
+nmap <C-j> gt
+nmap <C-k> gT
+set "editor=bash -lc \"mvim -f \\$*\" mvim"
+set hintchars=asdfjk;
+autocmd LocationChange .* js modes.passAllKeys = /duolingo\.com/.test(buffer.URL)
+source! ~/.vimperatorrc.local
+
+" vim: set ft=vimperator:
