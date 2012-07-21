@@ -9,8 +9,6 @@ alias ...='cd ../..'
 alias l='ls'
 alias e='open .'
 alias q='exit'
-alias v='mvim -v'
-alias vim='mvim -v'
 alias vimrc='vim ~/.vimrc'
 
 alias t='todo'
@@ -22,5 +20,12 @@ alias ne='do_this_next edit'
 alias du='du -h'
 
 alias grep='grep --color=auto'
-. `jumpto alias`
+source `jumpto alias`
+
+if [[ `uname` == 'Darwin' ]]; then
+    alias v='mvim -v'
+    alias vim='mvim -v'
+else
+    alias v='vim'
+fi
 
