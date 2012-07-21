@@ -39,6 +39,13 @@ setopt complete_aliases
 
 zle -N newtab
 
+bindkey -v
+
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
+
 bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
 bindkey '^[[5D' beginning-of-line
