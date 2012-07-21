@@ -1,0 +1,46 @@
+#! /usr/bin/env sh
+
+jump_list=~/.config/jumpto/jumplist.txt
+command=$1
+arg=$2
+run_dir=`pwd`
+
+if [ -L $0 ]; then
+    cd `dirname \`readlink $0\``
+else
+    cd `dirname $0`
+fi
+
+if [ "$command" = "alias" ]; then
+    echo `pwd`/alias.sh
+    exit
+fi
+
+if [ ! -f $jump_list ]; then
+    echo error: jump list not found: $jump_list>&2
+    exit 1
+fi
+
+case "$command" in
+    'jump')
+        cat $jump_list | ./jumpto_lookup $arg
+        ;;
+    'list')
+        cat $jump_list
+        ;;
+    'edit')
+        $EDITOR $jump_list
+        ;;
+    'add')
+        if [ -n "$arg" ]; then
+            echo $arg\;$run_dir>>$jump_list
+        else
+            echo error: missing jumpto alias >&2
+        fi
+        ;;
+    *)
+        echo command not found: $command >&2
+        ;;
+esac
+
+
