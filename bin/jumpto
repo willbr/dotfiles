@@ -23,7 +23,7 @@ fi
 
 case "$command" in
     'jump')
-        cat $jump_list | ./jumpto_lookup $arg
+        cat $jump_list | awk -f ./jumpto_lookup $arg
         ;;
     'list')
         cat $jump_list
