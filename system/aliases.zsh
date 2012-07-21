@@ -1,3 +1,7 @@
+alias lsl='ls -l'
+alias lsa='ls -a'
+alias lsal='ls -al'
+
 # grc overides for ls
 #   Made possible through contributions from generous benefactors like
 #   `brew install coreutils`
