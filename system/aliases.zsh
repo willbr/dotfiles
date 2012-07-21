@@ -38,3 +38,14 @@ alias ja='jumpto add'
 alias je='jumpto edit'
 alias jb='cd -'
 
+function project {
+    cd ~/src/$1
+}
+alias p='project'
+
+_project() {
+    reply=(`ls ~/src`)
+}
+
+compctl -K _project p
+
