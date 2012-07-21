@@ -20,7 +20,6 @@ alias ne='do_this_next edit'
 alias du='du -h'
 
 alias grep='grep --color=auto'
-source `jumpto alias`
 
 if [[ `uname` == 'Darwin' ]]; then
     alias v='mvim -v'
