@@ -12,6 +12,10 @@ set directory=~/.tmp,~/,.
 
 set history=500
 
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+    set mouse=a
+endif
 
 set tags=./tags;/
 set clipboard=unnamed
@@ -57,6 +61,8 @@ nnoremap <leader>Q :qall!<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>x :x<CR>
+
+nnoremap <leader>m :make<CR>
 
 " reflow paragraph with Q in normal and visual mode
 nnoremap Q gqap
@@ -123,6 +129,22 @@ set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
 set scrolloff=3
 
+if has("autocmd")
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+        au!
+        " When editing a file, always jump to the last known cursor position.
+        " Don't do it when the position is invalid or when inside an event handler
+        " (happens when dropping a file on gvim).
+        " Also don't do it when the mark is in the first line, that is the default
+        " position when opening a file.
+        autocmd BufReadPost *
+                    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                    \   exe "normal! g`\"" |
+                    \ endif
+
+    augroup END
+endif " has("autocmd")
 
 " ----------------------------------------------------------------------------
 " Visual Cues
