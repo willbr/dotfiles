@@ -15,6 +15,10 @@ alias gl='git pull --prune'
 compdef _git gl=git-pull
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 compdef _git glog=git-log
+
+alias glg='git log --max-count=10 --decorate --graph --oneline'
+alias glgs='git log --stat --max-count=10 --decorate --graph --oneline'
+
 alias gp='git push origin HEAD'
 compdef _git gp=git-push
 alias gd='git diff'
