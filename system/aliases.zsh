@@ -2,6 +2,8 @@ alias lsl='ls -l'
 alias lsa='ls -a'
 alias lsal='ls -al'
 
+alias rm=nocorrect rm -i'
+
 # grc overides for ls
 #   Made possible through contributions from generous benefactors like
 #   `brew install coreutils`
