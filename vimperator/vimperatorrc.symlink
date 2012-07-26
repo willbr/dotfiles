@@ -1,5 +1,7 @@
 "3.4 (created: 2012/04/02 20:07:29)
 
+inoremap jk <Esc>
+
 nmap <C-j> gt
 nmap <C-k> gT
 set "editor=bash -lc \"mvim -f \\$*\" mvim"
