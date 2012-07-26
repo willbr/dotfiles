@@ -55,3 +55,6 @@ _project() {
 
 compctl -K _project p
 
+function mw() { watchr -e 'watch(".") {system "make"}' }
+alias mw='nocorrect mw'
+
