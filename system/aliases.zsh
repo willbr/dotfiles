@@ -33,6 +33,12 @@ function j {
     fi
 }
 
+_j() {
+    reply=(`jumpto list | sed 's/;.*$//'`)
+}
+
+compctl -K _j j
+
 alias jls='jumpto list'
 alias ja='jumpto add'
 alias je='jumpto edit'
