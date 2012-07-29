@@ -66,6 +66,7 @@ set clipboard=unnamed
 cmap w!! w !sudo tee % >/dev/null
 
 set spelllang=en_gb
+map ,s z=
 
 " ----------------------------------------------------------------------------
 "  Text Formatting
@@ -213,7 +214,7 @@ set visualbell             " shut the fuck up
 function! StripWhitespace ()
     exec ':%s/ \+$//gc'
 endfunction
-map ,s :call StripWhitespace ()<CR>
+" map ,s :call StripWhitespace ()<CR>
 
 " ---------------------------------------------------------------------------
 "  C settings
