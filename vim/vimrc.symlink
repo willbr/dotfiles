@@ -109,6 +109,8 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>x :x<CR>
 
+nnoremap <leader>e :e<Space>
+
 nnoremap <leader>m :make<CR>
 
 " reflow paragraph with Q in normal and visual mode
