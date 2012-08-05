@@ -2,12 +2,17 @@
 
 let mapleader=","
 
+set defsearch=ddg
+
 nnoremap <Leader>rl :open readlater<CR>
 
 inoremap jk <Esc>
 
-nmap <C-j> gt
-nmap <C-k> gT
+nnoremap <C-j> gt
+nnoremap <C-k> gT
+cnoremap <c-p> <up>
+cnoremap <c-n> <down>
+
 set "editor=bash -lc \"mvim -f \\$*\" mvim"
 set hintchars=asdfjk;
 autocmd LocationChange .* js modes.passAllKeys = /duolingo\.com/.test(buffer.URL)
