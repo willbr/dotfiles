@@ -1,8 +1,6 @@
 vim/vim.symlink/.netrwhist
 vim/vim.symlink/bundle
 git/gitconfig.symlink
-vimperator/vimperator.symlink/info/default/history-*
-vimperator/vimperator.symlink/info/default/local-marks
-vimperator/vimperator.symlink/info/default/macros
+vimperator/vimperator.symlink/info/default/*
 vim/vim.symlink/doc/tags
 
