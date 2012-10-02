@@ -108,6 +108,7 @@ nnoremap ; :
 nnoremap <leader>Q :qall!<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
+nnoremap <leader>W :silent w !sudo tee % > /dev/null<CR>
 nnoremap <leader>x :x<CR>
 
 nnoremap <leader>e :e<Space>
