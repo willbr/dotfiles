@@ -4,9 +4,12 @@ let mapleader=","
 
 set defsearch=ddg
 
+set verbose=0
+
 nnoremap <Leader>rl :open readlater<CR>
 
 inoremap jk <Esc>
+cnoremap jk <Esc>
 
 nnoremap <C-j> gt
 nnoremap <C-k> gT

@@ -96,6 +96,7 @@ let mapleader = ","
 " exit to normal mode with 'jj'
 inoremap jj <ESC>
 inoremap jk <ESC>
+cnoremap jk <ESC>
 
 " set undo point at C-U
 inoremap <C-U> <C-G>u<C-U>
