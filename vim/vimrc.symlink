@@ -143,15 +143,15 @@ inoremap <C-p> <Up>
 inoremap <nul> _
 inoremap <C-Space> _
 
-inoremap <C-h> [
-inoremap <C-j> (
-imap <C-k> <SPACE><BS>)
-imap <C-l> <SPACE><BS>]
-inoremap <C-o> {
-
 nnoremap <silent> <leader>of :FSHere<CR>
 nnoremap <silent> <leader>a :Ack<Space>
 nnoremap <silent> <leader>gd :Gdiff<CR>
+
+" Use very magic search
+nnoremap / /\v
+nnoremap ? ?\v
+vnoremap / /\v
+vnoremap ? ?\v
 
 " ----------------------------------------------------------------------------
 " Window
