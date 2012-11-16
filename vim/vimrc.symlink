@@ -148,6 +148,7 @@ nnoremap <silent> <leader>a :Ack<Space>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 
 " Use very magic search
+cnoremap s/ s/\v
 nnoremap / /\v
 nnoremap ? ?\v
 vnoremap / /\v
