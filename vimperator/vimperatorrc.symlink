@@ -6,7 +6,8 @@ set defsearch=ddg
 
 set verbose=0
 
-nnoremap <Leader>rl :open readlater<CR>
+nnoremap <Leader>rl :open read-later<CR>
+nnoremap <Leader>rn :open instapaper-text<CR>
 
 nnoremap <C-j> gt
 nnoremap <C-k> gT
