@@ -25,6 +25,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rsi'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
 Bundle 'pangloss/vim-javascript'
@@ -131,13 +132,13 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
-" readline mappings
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-inoremap <C-f> <Right>
-inoremap <C-b> <Left>
-inoremap <C-n> <Down>
-inoremap <C-p> <Up>
+"" readline mappings
+"inoremap <C-a> <Home>
+"inoremap <C-e> <End>
+"inoremap <C-f> <Right>
+"inoremap <C-b> <Left>
+"inoremap <C-n> <Down>
+"inoremap <C-p> <Up>
 
 " key tweaks
 inoremap <nul> _
