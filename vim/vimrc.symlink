@@ -132,6 +132,10 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
+" Space toggles folds
+nnoremap <Space> za
+vnoremap <Space> za
+
 "" readline mappings
 "inoremap <C-a> <Home>
 "inoremap <C-e> <End>
