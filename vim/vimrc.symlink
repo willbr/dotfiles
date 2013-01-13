@@ -96,7 +96,9 @@ let mapleader = ","
 
 " exit to normal mode with 'jj'
 inoremap jj <ESC>
+inoremap kk <ESC>
 inoremap jk <ESC>
+inoremap Jk <ESC>
 cnoremap jk <ESC>
 
 " set undo point at C-U
@@ -152,12 +154,12 @@ nnoremap <silent> <leader>of :FSHere<CR>
 nnoremap <silent> <leader>a :Ack<Space>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 
-" Use very magic search
-cnoremap s/ s/\v
-nnoremap / /\v
-nnoremap ? ?\v
-vnoremap / /\v
-vnoremap ? ?\v
+"" Use very magic search
+"cnoremap s/ s/\v
+"nnoremap / /\v
+"nnoremap ? ?\v
+"vnoremap / /\v
+"vnoremap ? ?\v
 
 " ----------------------------------------------------------------------------
 " Window
