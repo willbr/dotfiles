@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Quick shortcut to an editor.
+#
+# This means that as I travel back and forth between editors, hey, I don't have
+# to re-learn any arcane commands. Neat.
+#
+# USAGE:
+#
+#   $ e
+#   # => opens the current directory in your editor
+#
+#   $ e .
+#   $ e /usr/local
+#   # => opens the specified directory in your editor
+
+journal_folder=~/Dropbox/docs/journal
+template=${journal_folder}/template.md
+year=`date "+%Y"`
+iso_date=`date "+%Y-%m-%d"`
+year_folder=${journal_folder}/${year}
+todays_file=${year_folder}/${iso_date}.md
+
+if [ ! -d "${year_folder}" ]; then
+    mkdir ${year_folder}
+fi
+
+$EDITOR ${todays_file}
+
+#echo ${year}
+#echo ${iso_date}.md
+#ls ${journal_folder}
+
