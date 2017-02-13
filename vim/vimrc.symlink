@@ -14,27 +14,31 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-markdown'
+"Bundle 'mileszs/ack.vim'
+"Bundle 'tpope/vim-surround'
+"Bundle 'tpope/vim-repeat'
+"Bundle 'tpope/vim-endwise'
+"Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rsi'
+"Bundle 'tpope/vim-rsi'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'tomasr/molokai'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
+"Bundle 'tomasr/molokai'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 Bundle 'majutsushi/tagbar'
-Bundle 'ervandew/supertab'
-Bundle 'Shougo/neocomplcache'
+"Bundle 'ervandew/supertab'
+
+"Bundle 'SirVer/ultisnips'
+"Bundle 'honza/vim-snippets'
+
+"Bundle 'Shougo/neocomplcache' "old
+"Bundle 'Shougo/neocomplete.vim' "new
+"Bundle 'Valloric/YouCompleteMe'
 
 if !VundleFound
     echo 'Installing Bundles...'
@@ -116,7 +120,7 @@ nnoremap <leader>x :x<CR>
 
 nnoremap <leader>e :e<Space>
 
-nnoremap <leader>m :make<CR>
+nnoremap <leader>m :w<CR>:make<CR>
 
 " reflow paragraph with Q in normal and visual mode
 nnoremap Q gqap
@@ -134,9 +138,9 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
-" Space toggles folds
-nnoremap <Space> za
-vnoremap <Space> za
+"" Space toggles folds
+"nnoremap <Space> za
+"vnoremap <Space> za
 
 "" readline mappings
 "inoremap <C-a> <Home>
@@ -179,6 +183,7 @@ set noshowcmd              " don't display incomplete commands
 set noshowmode
 set nolazyredraw           " turn off lazy redraw
 set number                 " line numbers
+set relativenumber
 set wildmenu               " turn on wild menu
 set wildmode=list:longest,full
 set ch=2                   " command line height
@@ -260,3 +265,16 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+let g:tagbar_ctags_bin="/usr/local/bin/ctags"
+
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+nnoremap <leader>se :UltiSnipsEdit<CR>
+

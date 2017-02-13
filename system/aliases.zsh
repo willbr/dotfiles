@@ -19,13 +19,13 @@ fi
 
 function j {
     if [ -z "$1" ]; then
-        cd ~; echo ~
+        pushd ~; echo ~
         return
     else
         local target=`jumpto jump $1`
         if [ -n "$target" ]; then
             if [ -d "$target" ]; then
-                cd $target; echo $target
+                pushd $target; echo $target
             else
                 echo error: $target is not a directory >&2
             fi
