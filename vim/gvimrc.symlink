@@ -1,4 +1,5 @@
-set guifont=Inconsolata-dz:h28
+"set guifont=Inconsolata-dz:h28
+set guifont=Terminus\ 18
 set background=dark
 colorscheme solarized
 set anti
