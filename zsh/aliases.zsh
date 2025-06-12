@@ -22,9 +22,14 @@ alias du='du -h'
 alias grep='grep --color=auto'
 
 if [[ `uname` == 'Darwin' ]]; then
-    alias v='mvim -v'
-    alias vim='mvim -v'
+    alias v='nvim'
+    alias vim='nvim'
+
+    alias python='python3'
+    alias pip='pip3'
 else
     alias v='vim'
 fi
+
+alias lab='jupyter-lab'
 
