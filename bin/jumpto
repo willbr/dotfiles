@@ -35,7 +35,9 @@ case "$command" in
         if [ -n "$arg" ]; then
             echo $arg\;$run_dir>>$jump_list
         else
-            echo error: missing jumpto alias >&2
+	    arg=$(basename $run_dir)
+            echo $arg\;$run_dir>>$jump_list
+            # echo error: missing jumpto alias >&2
         fi
         ;;
     *)
