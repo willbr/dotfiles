@@ -1,6 +1,6 @@
 set -g default-command "kickstart_tmux"
 
-set -g mode-mouse on
+set -g mouse on
 
 set -g default-terminal "screen-256color"
 
@@ -17,7 +17,7 @@ set -g history-limit 10000
 unbind C-b
 set-option -g prefix `
 bind ` send-keys `
-bind \ split-window -h
+bind = split-window -h
 bind - split-window -v
 
 bind-key k select-pane -U
