@@ -91,7 +91,7 @@ hs.hotkey.bind({"ctrl"}, "w", closeTabInBrave)
 
 local function handleEvent(event)
     local keyboardTypes = {
-        laptop  = 0x40,    -- Replace with your laptop's actual type ID
+        laptop  = 0x5c,    -- Replace with your laptop's actual type ID
         desktop = 0x28
     }
     -- print(hs.inspect(keyboardTypes))
@@ -119,7 +119,7 @@ local function handleEvent(event)
 
     -- Desktop keyboard (using Right Alt)
     if kbdType == keyboardTypes.desktop and right_alt ~= 0 then
-        print(string.format("keycode: %x", keycode))
+        -- print(string.format("keycode: %x", keycode))
         local app = appKeys[keycode]
         if app then
             hs.application.launchOrFocus(app)
@@ -128,7 +128,7 @@ local function handleEvent(event)
 
     -- Laptop keyboard (using Right Cmd)
     elseif kbdType == keyboardTypes.laptop and right_cmd ~= 0 then
-        print(string.format("keycode: %x", keycode))
+        -- print(string.format("keycode: %x", keycode))
         local app = appKeys[keycode]
         if app then
             hs.application.launchOrFocus(app)
