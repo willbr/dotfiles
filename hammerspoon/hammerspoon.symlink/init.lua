@@ -66,7 +66,27 @@ local function closeTabInSafari()
     hs.osascript.applescript(script)
   end
 
-hs.hotkey.bind({"ctrl"}, "w", closeTabInSafari)
+-- hs.hotkey.bind({"ctrl"}, "w", closeTabInSafari)
+local function closeTabInBrave()
+    local app = hs.application.frontmostApplication()
+    local appname = app:name()
+
+    if appname ~= "Brave Browser" then
+        print(appname)
+        return
+    end
+
+    local script = [[
+      tell application "Brave Browser"
+        activate
+        tell application "System Events" to keystroke "w" using command down
+      end tell
+    ]]
+
+    hs.osascript.applescript(script)
+end
+
+hs.hotkey.bind({"ctrl"}, "w", closeTabInBrave)
 
 
 local function handleEvent(event)
@@ -129,6 +149,10 @@ local function handleEvent(event)
         -- print(string.format("right_cmd: %x", right_cmd))
         -- do nothing
     else
+        print(string.format("kbdType: %x", kbdType))
+        print(string.format("desktop: %x", keyboardTypes.desktop))
+        print(string.format("desktop eq: %s", kbdType == keyboardTypes.desktop))
+        print(string.format("keycode: %x", keycode))
         -- print(string.format("kbdType: %x", kbdType))
     end
     
