@@ -24,6 +24,7 @@ alias grep='grep --color=auto'
 if [[ `uname` == 'Darwin' ]]; then
     alias v='nvim'
     alias vim='nvim'
+    alias gvim='vimr'
 
     alias python='python3'
     alias pip='pip3'
@@ -32,4 +33,6 @@ else
 fi
 
 alias lab='jupyter-lab'
+
+alias ibrew='/usr/local/bin/brew' # Alias for Intel (Rosetta) Homebrew
 
