@@ -24,6 +24,7 @@ alias grep='grep --color=auto'
 if [[ `uname` == 'Darwin' ]]; then
     alias v='nvim'
     alias vim='nvim'
+    alias gvim='vimr'
 
     alias python='python3'
     alias pip='pip3'

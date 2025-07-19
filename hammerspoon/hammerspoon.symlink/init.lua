@@ -39,64 +39,34 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Left", function()
     win:setFrame(f)
   end)
 
-local function closeFrontmostWindow()
-    local win = hs.window.focusedWindow()
-    if win then
-        --win:close()
-    end
-end
+-- A helper function to send a CMD+[key] shortcut only to Brave Browser
+local function send_brave_shortcut(key)
+  -- Get the application that is currently in focus
+  local frontmostApp = hs.application.frontmostApplication()
 
-local function closeTabInSafari()
-    local app = hs.application.frontmostApplication()
-    local appname = app:name()
-    
-
-    if appname ~= "Safari" then
-        print(appname)
-        return
-    end
-
-    local script = [[
-      tell application "Safari"
-        activate
-        tell application "System Events" to keystroke "w" using command down
-      end tell
-    ]]
-  
-    hs.osascript.applescript(script)
+  -- Check if the focused application is Brave Browser
+  if frontmostApp and frontmostApp:name() == "Brave Browser" then
+    -- Post the key-down and key-up events separately with a small delay
+    -- This is more reliable than hs.eventtap.keyStroke()
+    hs.eventtap.event.newKeyEvent({'cmd'}, key, true):post()
+    hs.timer.usleep(1000) -- 1-millisecond delay
+    hs.eventtap.event.newKeyEvent({'cmd'}, key, false):post()
   end
-
--- hs.hotkey.bind({"ctrl"}, "w", closeTabInSafari)
-local function closeTabInBrave()
-    local app = hs.application.frontmostApplication()
-    local appname = app:name()
-
-    if appname ~= "Brave Browser" then
-        print(appname)
-        return
-    end
-
-    local script = [[
-      tell application "Brave Browser"
-        activate
-        tell application "System Events" to keystroke "w" using command down
-      end tell
-    ]]
-
-    hs.osascript.applescript(script)
 end
 
-hs.hotkey.bind({"ctrl"}, "w", closeTabInBrave)
+-- Remap Ctrl+W to close the current tab (Cmd+W)
+hs.hotkey.bind({'ctrl'}, 'w', function()
+  send_brave_shortcut('w')
+end)
 
+-- Remap Ctrl+T to open a new tab (Cmd+T)
+hs.hotkey.bind({'ctrl'}, 't', function()
+  send_brave_shortcut('t')
+end)
 
 local function handleEvent(event)
-    local keyboardTypes = {
-        laptop  = 0x5c,    -- Replace with your laptop's actual type ID
-        desktop = 0x28
-    }
     -- print(hs.inspect(keyboardTypes))
 
-    local kbdType = event:getProperty(hs.eventtap.event.properties.keyboardEventKeyboardType)
     -- print(string.format("kbdType: %x", kbdType))
     local keycode = event:getKeyCode()
     -- print(string.format("keycode: %x", keycode))
@@ -104,7 +74,7 @@ local function handleEvent(event)
     -- print(string.format("Raw flags: %x", f))
 
     -- Raw modifier flags
-    local right_alt = f & hs.eventtap.event.rawFlagMasks.deviceRightAlternate
+    -- local right_alt = f & hs.eventtap.event.rawFlagMasks.deviceRightAlternate
     local right_cmd = f & hs.eventtap.event.rawFlagMasks.deviceRightCommand
     -- print(string.format("right_alt: %x", right_alt))
     -- print(string.format("right_cmd: %x", right_cmd))
@@ -118,46 +88,58 @@ local function handleEvent(event)
     -- print(hs.inspect(appKeys))
 
     -- Desktop keyboard (using Right Alt)
-    if kbdType == keyboardTypes.desktop and right_alt ~= 0 then
+    if right_cmd ~= 0 then
         -- print(string.format("keycode: %x", keycode))
         local app = appKeys[keycode]
         if app then
             hs.application.launchOrFocus(app)
             return true
         end
-
-    -- Laptop keyboard (using Right Cmd)
-    elseif kbdType == keyboardTypes.laptop and right_cmd ~= 0 then
+    elseif right_cmd ~= 0 then
+        -- print("skip")
+        -- print(string.format("kbdType: %x", kbdType))
+        -- print(string.format("desktop: %x", keyboardTypes.desktop))
+        -- print(string.format("desktop eq: %s", kbdType == keyboardTypes.desktop))
         -- print(string.format("keycode: %x", keycode))
-        local app = appKeys[keycode]
-        if app then
-            hs.application.launchOrFocus(app)
-            return true
-        end
-    elseif right_alt ~= 0 or right_cmd ~= 0 then
-        print("skip")
-        print(string.format("kbdType: %x", kbdType))
-        print(string.format("desktop: %x", keyboardTypes.desktop))
-        print(string.format("desktop eq: %s", kbdType == keyboardTypes.desktop))
-        print(string.format("keycode: %x", keycode))
-        print(hs.inspect(keyboardTypes))
+        -- print(hs.inspect(keyboardTypes))
         -- print(string.format("keycode: %x", hs.keycodes.map.i))
         -- print(string.format("keycode: %x", hs.keycodes.map.o))
         -- print(string.format("keycode: %x", hs.keycodes.map.p))
-        print()
+        -- print()
         -- print(string.format("right_alt: %x", right_alt))
         -- print(string.format("right_cmd: %x", right_cmd))
         -- do nothing
     else
-        print(string.format("kbdType: %x", kbdType))
-        print(string.format("desktop: %x", keyboardTypes.desktop))
-        print(string.format("desktop eq: %s", kbdType == keyboardTypes.desktop))
-        print(string.format("keycode: %x", keycode))
+        -- print(string.format("kbdType: %x", kbdType))
+        -- print(string.format("desktop: %x", keyboardTypes.desktop))
+        -- print(string.format("desktop eq: %s", kbdType == keyboardTypes.desktop))
+        -- print(string.format("keycode: %x", keycode))
         -- print(string.format("kbdType: %x", kbdType))
     end
     
     return false
 end
 
-tap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, handleEvent)
-tap:start()
+
+local desktopHostname = "William’s Mac mini"
+local laptopHostname = "YourLaptopName"
+
+local currentHost = hs.host.localizedName()
+
+if currentHost == desktopHostname then
+    hs.hotkey.bind({"alt"}, "i", function()
+        hs.application.launchOrFocus("VimR")
+    end)
+    hs.hotkey.bind({"alt"}, "o", function()
+        hs.application.launchOrFocus("Ghostty")
+    end)
+    hs.hotkey.bind({"alt"}, "p", function()
+        hs.application.launchOrFocus("Strongbox")
+    end)
+elseif currentHost == laptopHostname then
+    hs.alert.show("You are on your laptop!")
+    tap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, handleEvent)
+    tap:start()
+else
+    print(string.format("Unknown device! %s", currentHost))
+end
