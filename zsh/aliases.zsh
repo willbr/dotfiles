@@ -34,3 +34,5 @@ fi
 
 alias lab='jupyter-lab'
 
+alias ibrew='/usr/local/bin/brew' # Alias for Intel (Rosetta) Homebrew
+
