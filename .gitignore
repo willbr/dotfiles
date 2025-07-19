@@ -4,3 +4,6 @@ git/gitconfig.symlink
 vimperator/vimperator.symlink/info/default/*
 vim/vim.symlink/doc/tags
 
+.DS_Store
+
+
