@@ -4,7 +4,7 @@ else
   export PS1='%3~$(git_info_for_prompt)%# '
 fi
 
-export LESS="-riNJ"
+export LESS="-riJ"
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
